@@ -1,0 +1,371 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BaseForPracticModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Application">
+    <Key>
+      <PropertyRef Name="IdApplication" />
+    </Key>
+    <Property Name="IdApplication" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Kod" Type="Int32" />
+    <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Discipline" Relationship="Self.FK_Application_Discipline" FromRole="Application" ToRole="Discipline" />
+    <NavigationProperty Name="Speciality" Relationship="Self.FK_Application_Speciality" FromRole="Application" ToRole="Speciality" />
+  </EntityType>
+  <EntityType Name="Cafedra">
+    <Key>
+      <PropertyRef Name="Shifr" />
+    </Key>
+    <Property Name="Shifr" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NameCafedra" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Abriviation" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Facultet" Relationship="Self.FK_Cafedra_Facultet" FromRole="Cafedra" ToRole="Facultet" />
+    <NavigationProperty Name="Discipline" Relationship="Self.FK_Discipline_Cafedra" FromRole="Cafedra" ToRole="Discipline" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Cafedra" FromRole="Cafedra" ToRole="Employee" />
+    <NavigationProperty Name="Speciality" Relationship="Self.FK_Speciality_Cafedra" FromRole="Cafedra" ToRole="Speciality" />
+  </EntityType>
+  <EntityType Name="Discipline">
+    <Key>
+      <PropertyRef Name="Kod" />
+    </Key>
+    <Property Name="Kod" Type="Int32" Nullable="false" />
+    <Property Name="Volume" Type="Int32" />
+    <Property Name="NameDiscipline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Shifr" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Application" Relationship="Self.FK_Application_Discipline" FromRole="Discipline" ToRole="Application" />
+    <NavigationProperty Name="Cafedra" Relationship="Self.FK_Discipline_Cafedra" FromRole="Discipline" ToRole="Cafedra" />
+    <NavigationProperty Name="Exam" Relationship="Self.FK_Exam_Discipline" FromRole="Discipline" ToRole="Exam" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="TabNumber" />
+    </Key>
+    <Property Name="TabNumber" Type="Int32" Nullable="false" />
+    <Property Name="Shifr" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IdPost" Type="Int32" />
+    <Property Name="idEnginerSpeciality" Type="Int32" />
+    <Property Name="Oklad" Type="Decimal" Precision="8" Scale="2" />
+    <Property Name="Shef" Type="Int32" />
+    <Property Name="Expirience" Type="Int32" />
+    <Property Name="IdTitle" Type="Int32" />
+    <NavigationProperty Name="Cafedra" Relationship="Self.FK_Employee_Cafedra" FromRole="Employee" ToRole="Cafedra" />
+    <NavigationProperty Name="Employee1" Relationship="Self.FK_Employee_Employee" FromRole="Employee" ToRole="Employee1" />
+    <NavigationProperty Name="Employee2" Relationship="Self.FK_Employee_Employee" FromRole="Employee1" ToRole="Employee" />
+    <NavigationProperty Name="EnginerSpeciality" Relationship="Self.FK_Employee_EnginerSpeciality" FromRole="Employee" ToRole="EnginerSpeciality" />
+    <NavigationProperty Name="Post" Relationship="Self.FK_Employee_Post" FromRole="Employee" ToRole="Post" />
+    <NavigationProperty Name="Title" Relationship="Self.FK_Employee_Title" FromRole="Employee" ToRole="Title" />
+  </EntityType>
+  <EntityType Name="EnginerSpeciality">
+    <Key>
+      <PropertyRef Name="idEnginerSpeciality" />
+    </Key>
+    <Property Name="idEnginerSpeciality" Type="Int32" Nullable="false" />
+    <Property Name="NameEnginerSpeciality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_EnginerSpeciality" FromRole="EnginerSpeciality" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Exam">
+    <Key>
+      <PropertyRef Name="IdExam" />
+    </Key>
+    <Property Name="IdExam" Type="Int32" Nullable="false" />
+    <Property Name="DateEXam" Type="DateTime" Precision="0" />
+    <Property Name="Kod" Type="Int32" />
+    <Property Name="Auditory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Discipline" Relationship="Self.FK_Exam_Discipline" FromRole="Exam" ToRole="Discipline" />
+    <NavigationProperty Name="ExamStudent" Relationship="Self.FK_ExamStudent_Exam" FromRole="Exam" ToRole="ExamStudent" />
+  </EntityType>
+  <EntityType Name="ExamStudent">
+    <Key>
+      <PropertyRef Name="IdExamStudent" />
+    </Key>
+    <Property Name="IdExamStudent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdExam" Type="Int32" />
+    <Property Name="RegNumber" Type="Int32" Nullable="false" />
+    <Property Name="Score" Type="Int32" />
+    <NavigationProperty Name="Exam" Relationship="Self.FK_ExamStudent_Exam" FromRole="ExamStudent" ToRole="Exam" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_ExamStudent_Student" FromRole="ExamStudent" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Facultet">
+    <Key>
+      <PropertyRef Name="Abriviation" />
+    </Key>
+    <Property Name="Abriviation" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NameFacultet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cafedra" Relationship="Self.FK_Cafedra_Facultet" FromRole="Facultet" ToRole="Cafedra" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="IdPost" />
+    </Key>
+    <Property Name="IdPost" Type="Int32" Nullable="false" />
+    <Property Name="NamePost" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Post" FromRole="Post" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Speciality">
+    <Key>
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Direction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Shifr" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Application" Relationship="Self.FK_Application_Speciality" FromRole="Speciality" ToRole="Application" />
+    <NavigationProperty Name="Cafedra" Relationship="Self.FK_Speciality_Cafedra" FromRole="Speciality" ToRole="Cafedra" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_Student_Speciality" FromRole="Speciality" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="RegNumber" />
+    </Key>
+    <Property Name="RegNumber" Type="Int32" Nullable="false" />
+    <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ExamStudent" Relationship="Self.FK_ExamStudent_Student" FromRole="Student" ToRole="ExamStudent" />
+    <NavigationProperty Name="Speciality" Relationship="Self.FK_Student_Speciality" FromRole="Student" ToRole="Speciality" />
+  </EntityType>
+  <EntityType Name="Title">
+    <Key>
+      <PropertyRef Name="IdTitle" />
+    </Key>
+    <Property Name="IdTitle" Type="Int32" Nullable="false" />
+    <Property Name="NameTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Title" FromRole="Title" ToRole="Employee" />
+  </EntityType>
+  <Association Name="FK_Application_Discipline">
+    <End Role="Discipline" Type="Self.Discipline" Multiplicity="0..1" />
+    <End Role="Application" Type="Self.Application" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discipline">
+        <PropertyRef Name="Kod" />
+      </Principal>
+      <Dependent Role="Application">
+        <PropertyRef Name="Kod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Application_Speciality">
+    <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+    <End Role="Application" Type="Self.Application" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speciality">
+        <PropertyRef Name="Number" />
+      </Principal>
+      <Dependent Role="Application">
+        <PropertyRef Name="Number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cafedra_Facultet">
+    <End Role="Facultet" Type="Self.Facultet" Multiplicity="0..1" />
+    <End Role="Cafedra" Type="Self.Cafedra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facultet">
+        <PropertyRef Name="Abriviation" />
+      </Principal>
+      <Dependent Role="Cafedra">
+        <PropertyRef Name="Abriviation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Discipline_Cafedra">
+    <End Role="Cafedra" Type="Self.Cafedra" Multiplicity="0..1" />
+    <End Role="Discipline" Type="Self.Discipline" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cafedra">
+        <PropertyRef Name="Shifr" />
+      </Principal>
+      <Dependent Role="Discipline">
+        <PropertyRef Name="Shifr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Cafedra">
+    <End Role="Cafedra" Type="Self.Cafedra" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cafedra">
+        <PropertyRef Name="Shifr" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Shifr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Speciality_Cafedra">
+    <End Role="Cafedra" Type="Self.Cafedra" Multiplicity="0..1" />
+    <End Role="Speciality" Type="Self.Speciality" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cafedra">
+        <PropertyRef Name="Shifr" />
+      </Principal>
+      <Dependent Role="Speciality">
+        <PropertyRef Name="Shifr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exam_Discipline">
+    <End Role="Discipline" Type="Self.Discipline" Multiplicity="0..1" />
+    <End Role="Exam" Type="Self.Exam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discipline">
+        <PropertyRef Name="Kod" />
+      </Principal>
+      <Dependent Role="Exam">
+        <PropertyRef Name="Kod" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Employee1" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="TabNumber" />
+      </Principal>
+      <Dependent Role="Employee1">
+        <PropertyRef Name="Shef" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_EnginerSpeciality">
+    <End Role="EnginerSpeciality" Type="Self.EnginerSpeciality" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EnginerSpeciality">
+        <PropertyRef Name="idEnginerSpeciality" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="idEnginerSpeciality" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Post">
+    <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="IdPost" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="IdPost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Title">
+    <End Role="Title" Type="Self.Title" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Title">
+        <PropertyRef Name="IdTitle" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="IdTitle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExamStudent_Exam">
+    <End Role="Exam" Type="Self.Exam" Multiplicity="0..1" />
+    <End Role="ExamStudent" Type="Self.ExamStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exam">
+        <PropertyRef Name="IdExam" />
+      </Principal>
+      <Dependent Role="ExamStudent">
+        <PropertyRef Name="IdExam" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExamStudent_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="ExamStudent" Type="Self.ExamStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="RegNumber" />
+      </Principal>
+      <Dependent Role="ExamStudent">
+        <PropertyRef Name="RegNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Speciality">
+    <End Role="Speciality" Type="Self.Speciality" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Speciality">
+        <PropertyRef Name="Number" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="Number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BaseForPracticEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Application" EntityType="Self.Application" />
+    <EntitySet Name="Cafedra" EntityType="Self.Cafedra" />
+    <EntitySet Name="Discipline" EntityType="Self.Discipline" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="EnginerSpeciality" EntityType="Self.EnginerSpeciality" />
+    <EntitySet Name="Exam" EntityType="Self.Exam" />
+    <EntitySet Name="ExamStudent" EntityType="Self.ExamStudent" />
+    <EntitySet Name="Facultet" EntityType="Self.Facultet" />
+    <EntitySet Name="Post" EntityType="Self.Post" />
+    <EntitySet Name="Speciality" EntityType="Self.Speciality" />
+    <EntitySet Name="Student" EntityType="Self.Student" />
+    <EntitySet Name="Title" EntityType="Self.Title" />
+    <AssociationSet Name="FK_Application_Discipline" Association="Self.FK_Application_Discipline">
+      <End Role="Discipline" EntitySet="Discipline" />
+      <End Role="Application" EntitySet="Application" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Application_Speciality" Association="Self.FK_Application_Speciality">
+      <End Role="Speciality" EntitySet="Speciality" />
+      <End Role="Application" EntitySet="Application" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cafedra_Facultet" Association="Self.FK_Cafedra_Facultet">
+      <End Role="Facultet" EntitySet="Facultet" />
+      <End Role="Cafedra" EntitySet="Cafedra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Discipline_Cafedra" Association="Self.FK_Discipline_Cafedra">
+      <End Role="Cafedra" EntitySet="Cafedra" />
+      <End Role="Discipline" EntitySet="Discipline" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Cafedra" Association="Self.FK_Employee_Cafedra">
+      <End Role="Cafedra" EntitySet="Cafedra" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Speciality_Cafedra" Association="Self.FK_Speciality_Cafedra">
+      <End Role="Cafedra" EntitySet="Cafedra" />
+      <End Role="Speciality" EntitySet="Speciality" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exam_Discipline" Association="Self.FK_Exam_Discipline">
+      <End Role="Discipline" EntitySet="Discipline" />
+      <End Role="Exam" EntitySet="Exam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Employee" Association="Self.FK_Employee_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Employee1" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_EnginerSpeciality" Association="Self.FK_Employee_EnginerSpeciality">
+      <End Role="EnginerSpeciality" EntitySet="EnginerSpeciality" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Post" Association="Self.FK_Employee_Post">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Title" Association="Self.FK_Employee_Title">
+      <End Role="Title" EntitySet="Title" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExamStudent_Exam" Association="Self.FK_ExamStudent_Exam">
+      <End Role="Exam" EntitySet="Exam" />
+      <End Role="ExamStudent" EntitySet="ExamStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExamStudent_Student" Association="Self.FK_ExamStudent_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="ExamStudent" EntitySet="ExamStudent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Speciality" Association="Self.FK_Student_Speciality">
+      <End Role="Speciality" EntitySet="Speciality" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

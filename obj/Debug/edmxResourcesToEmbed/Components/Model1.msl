@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище BaseForPracticModelContainer" CdmEntityContainer="BaseForPracticEntities1">
+    <EntitySetMapping Name="Application">
+      <EntityTypeMapping TypeName="BaseForPracticModel.Application">
+        <MappingFragment StoreEntitySet="Application">
+          <ScalarProperty Name="IdApplication" ColumnName="IdApplication" />
+          <ScalarProperty Name="Kod" ColumnName="Kod" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cafedra">
+      <EntityTypeMapping TypeName="BaseForPracticModel.Cafedra">
+        <MappingFragment StoreEntitySet="Cafedra">
+          <ScalarProperty Name="Shifr" ColumnName="Shifr" />
+          <ScalarProperty Name="NameCafedra" ColumnName="NameCafedra" />
+          <ScalarProperty Name="Abriviation" ColumnName="Abriviation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Discipline">
+      <EntityTypeMapping TypeName="BaseForPracticModel.Discipline">
+        <MappingFragment StoreEntitySet="Discipline">
+          <ScalarProperty Name="Kod" ColumnName="Kod" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="NameDiscipline" ColumnName="NameDiscipline" />
+          <ScalarProperty Name="Shifr" ColumnName="Shifr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="BaseForPracticModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="TabNumber" ColumnName="TabNumber" />
+          <ScalarProperty Name="Shifr" ColumnName="Shifr" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+          <ScalarProperty Name="idEnginerSpeciality" ColumnName="idEnginerSpeciality" />
+          <ScalarProperty Name="Oklad" ColumnName="Oklad" />
+          <ScalarProperty Name="Shef" ColumnName="Shef" />
+          <ScalarProperty Name="Expirience" ColumnName="Expirience" />
+          <ScalarProperty Name="IdTitle" ColumnName="IdTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EnginerSpeciality">
+      <EntityTypeMapping TypeName="BaseForPracticModel.EnginerSpeciality">
+        <MappingFragment StoreEntitySet="EnginerSpeciality">
+          <ScalarProperty Name="idEnginerSpeciality" ColumnName="idEnginerSpeciality" />
+          <ScalarProperty Name="NameEnginerSpeciality" ColumnName="NameEnginerSpeciality" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Exam">
+      <EntityTypeMapping TypeName="BaseForPracticModel.Exam">
+        <MappingFragment StoreEntitySet="Exam">
+          <ScalarProperty Name="IdExam" ColumnName="IdExam" />
+          <ScalarProperty Name="DateEXam" ColumnName="DateEXam" />
+          <ScalarProperty Name="Kod" ColumnName="Kod" />
+          <ScalarProperty Name="Auditory" ColumnName="Auditory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExamStudent">
+      <EntityTypeMapping TypeName="BaseForPracticModel.ExamStudent">
+        <MappingFragment StoreEntitySet="ExamStudent">
+          <ScalarProperty Name="IdExamStudent" ColumnName="IdExamStudent" />
+          <ScalarProperty Name="IdExam" ColumnName="IdExam" />
+          <ScalarProperty Name="RegNumber" ColumnName="RegNumber" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Facultet">
+      <EntityTypeMapping TypeName="BaseForPracticModel.Facultet">
+        <MappingFragment StoreEntitySet="Facultet">
+          <ScalarProperty Name="Abriviation" ColumnName="Abriviation" />
+          <ScalarProperty Name="NameFacultet" ColumnName="NameFacultet" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Post">
+      <EntityTypeMapping TypeName="BaseForPracticModel.Post">
+        <MappingFragment StoreEntitySet="Post">
+          <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+          <ScalarProperty Name="NamePost" ColumnName="NamePost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Speciality">
+      <EntityTypeMapping TypeName="BaseForPracticModel.Speciality">
+        <MappingFragment StoreEntitySet="Speciality">
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Direction" ColumnName="Direction" />
+          <ScalarProperty Name="Shifr" ColumnName="Shifr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="BaseForPracticModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="RegNumber" ColumnName="RegNumber" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Title">
+      <EntityTypeMapping TypeName="BaseForPracticModel.Title">
+        <MappingFragment StoreEntitySet="Title">
+          <ScalarProperty Name="IdTitle" ColumnName="IdTitle" />
+          <ScalarProperty Name="NameTitle" ColumnName="NameTitle" />
+          <ScalarProperty Name="Degree" ColumnName="Degree" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

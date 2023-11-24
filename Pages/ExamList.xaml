@@ -1,0 +1,45 @@
+﻿<Page x:Class="PracticLatypov.Pages.ExamList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PracticLatypov.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ExamList">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="38*"/>
+            <RowDefinition Height="371*"/>
+            <RowDefinition Height="41*"/>
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Height="30" Width="523" >
+            <TextBlock Margin="15 5 0 0">Сортировки</TextBlock>
+            <ComboBox Height="30" Width="200" Margin="15 0" x:Name="SortCb" SelectionChanged="SortCb_SelectionChanged">
+                <ComboBoxItem>Id экзамена</ComboBoxItem>
+                <ComboBoxItem>Дата экзамена</ComboBoxItem>
+                <ComboBoxItem>Наименование дисциплины</ComboBoxItem>
+            </ComboBox>
+            <TextBox Width="200" x:Name="SearchTb" TextChanged="SearchTb_TextChanged"></TextBox>
+        </StackPanel>
+
+
+        <ListView x:Name="MyList" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="1" VerticalAlignment="Top" Height="380" Margin="0,2,0,0" Grid.RowSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn DisplayMemberBinding="{Binding IdExam}" Header="ID Экзамена" Width="150"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding DateEXam, StringFormat='dd-MM-yyyy'}"  Header="Дата Экзамена" Width="150"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Discipline.NameDiscipline}" Header="Наименование Дисциплины" Width="250"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Auditory}" Header="Аудитория" Width="200"></GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal" Width="310">
+            <Button Height="30" Width="310" x:Name="RecordStudentBtn" Click="RecordStudentBtn_Click">Записать / удалить студентов на экзамен</Button>
+        </StackPanel>
+    </Grid>
+</Page>
